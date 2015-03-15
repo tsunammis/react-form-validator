@@ -1,0 +1,47 @@
+{
+  "name": "react-form-validator",
+  "description": "Simple way to validate your React forms",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tsunammis/react-form-validator",
+  "keywords": [
+    "react",
+    "form",
+    "validation"
+  ],
+  "author": {
+    "name": "Stan Chollet",
+    "email": "stanislas.chollet@gmail.com"
+  },
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/tsunammis/react-form-validator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsunammis/react-form-validator.git"
+  },
+  "dependencies": {
+    "classnames": "^1.1.4",
+    "lodash": "^3.2.0",
+    "object-assign": "^2.0.0",
+    "react": "0.12.2",
+    "validator": "^3.33.0",
+    "when": "^3.7.2"
+  },
+  "devDependencies": {
+    "jest-cli": "^0.2.2",
+    "react-tools": "^0.12.2"
+  },
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tsunammis/flux-isomorphic-helpers/blob/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "jest"
+  }
+}
