@@ -10,7 +10,7 @@
     "react-component"
   ],
   "author": "Stan Chollet <stanislas.chollet@gmail.com>",
-  "main": "lib/index.js",
+  "main": "lib",
   "bugs": {
     "url": "https://github.com/tsunammis/react-form-validator/issues"
   },
@@ -26,15 +26,6 @@
     "validator": "^3.33.0",
     "when": "^3.7.2"
   },
-  "devDependencies": {
-    "babel": "^4.4.5",
-    "babel-core": "^4.4.6",
-    "babel-loader": "^4.0.0",
-    "jest-cli": "^0.2.2",
-    "react-tools": "^0.12.2",
-    "rf-changelog": "^0.4.0",
-    "webpack": "^1.7.3"
-  },
   "engines": {
     "node": ">= 0.10"
   },
@@ -44,9 +35,5 @@
       "url": "https://github.com/tsunammis/flux-isomorphic-helpers/blob/master/LICENSE"
     }
   ],
-  "scripts": {
-    "build": "chmod +x ./scripts/build.sh && ./scripts/build.sh",
-    "test": "jest"
-  },
   "license": "MIT"
 }

@@ -1,0 +1,30 @@
+{
+  "name": "react-form-validator",
+  "version": "0.1.0",
+  "description": "Simple way to validate your React forms",
+  "main": "dist/global/ReactFormValidator.js",
+  "homepage": "https://github.com/tsunammis/react-form-validator",
+  "authors": [
+    "Stan Chollet <stanislas.chollet@gmail.com>"
+  ],
+  "keywords": [
+    "react",
+    "form",
+    "validation",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "specs",
+    "lib",
+    "examples",
+    "script",
+    "CONTRIBUTING.md",
+    "karma.conf.js",
+    "package.json",
+    "webpack.config.js"
+  ]
+}
