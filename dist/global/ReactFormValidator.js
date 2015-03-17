@@ -266,7 +266,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // Check if the event is supported
 	            // http://facebook.github.io/react/docs/events.html#supported-events
 	            validateOnEvents[eventName] = (function (e) {
-	                console.log("event: " + e.type);
 	                this.validate();
 	            }).bind(this);
 	        }).bind(this));
@@ -318,7 +317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.min",
-	                            message: "The length of this value should be greater than or equal to " + limit + "."
+	                            message: "This value should have greater than or equal " + limit + " characters."
 	                        });
 	                    }
 	                });
@@ -338,7 +337,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.max",
-	                            message: "The length of this value should be less than or equal to " + limit + "."
+	                            message: "This value should have less than or equal " + limit + " characters."
 	                        });
 	                    }
 	                });
@@ -358,7 +357,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.length",
-	                            message: "This value should have a length equals to " + limit + "."
+	                            message: "This value should have exactly " + limit + " characters."
+	                        });
+	                    }
+	                });
+	            });
+	        }).bind(this);
+	    },
+
+	    rangeLength: function rangeLength(limitMin, limitMax) {
+
+	        helpers.assert(_.isNumber(limitMin) && limitMin >= 0, "limit min must be a positive integer");
+	        helpers.assert(_.isNumber(limitMax) && limitMax >= 0, "limit max must be a positive integer");
+	        helpers.assert(limitMin <= limitMax, "limit min must be less than or equals to limit max");
+
+	        return (function (value) {
+	            return this.is()(value).then(function (valueResolved) {
+	                return when.promise(function (resolve, reject) {
+	                    if (helpers.isEmpty(valueResolved) || _.isString(valueResolved) && valueResolved.length >= limitMin && valueResolved.length <= limitMax) {
+	                        resolve(valueResolved);
+	                    } else {
+	                        reject({
+	                            code: "string.rangeLength",
+	                            message: "This value should have between " + limitMin + " and " + limitMax + " characters."
 	                        });
 	                    }
 	                });
@@ -866,16 +887,16 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var timed = __webpack_require__(17);
-			var array = __webpack_require__(18);
-			var flow = __webpack_require__(19);
-			var fold = __webpack_require__(20);
-			var inspect = __webpack_require__(21);
-			var generate = __webpack_require__(22);
-			var progress = __webpack_require__(23);
-			var withThis = __webpack_require__(24);
-			var unhandledRejection = __webpack_require__(25);
-			var TimeoutError = __webpack_require__(26);
+			var timed = __webpack_require__(18);
+			var array = __webpack_require__(19);
+			var flow = __webpack_require__(20);
+			var fold = __webpack_require__(21);
+			var inspect = __webpack_require__(22);
+			var generate = __webpack_require__(23);
+			var progress = __webpack_require__(24);
+			var withThis = __webpack_require__(25);
+			var unhandledRejection = __webpack_require__(26);
+			var TimeoutError = __webpack_require__(17);
 
 			var Promise = [array, flow, fold, generate, progress, inspect, withThis, timed, unhandledRejection].reduce(function (Promise, feature) {
 				return feature(Promise);
@@ -1748,10 +1769,45 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	(function (define) {
 		"use strict";
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+
+			/**
+	   * Custom error type for promises rejected by promise.timeout
+	   * @param {string} message
+	   * @constructor
+	   */
+			function TimeoutError(message) {
+				Error.call(this);
+				this.message = message;
+				this.name = TimeoutError.name;
+				if (typeof Error.captureStackTrace === "function") {
+					Error.captureStackTrace(this, TimeoutError);
+				}
+			}
+
+			TimeoutError.prototype = Object.create(Error.prototype);
+			TimeoutError.prototype.constructor = TimeoutError;
+
+			return TimeoutError;
+		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	})(__webpack_require__(29));
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+
+	/** @license MIT License (c) copyright 2010-2014 original author or authors */
+	/** @author Brian Cavalier */
+	/** @author John Hann */
+
+	(function (define) {
+		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var env = __webpack_require__(32);
-			var TimeoutError = __webpack_require__(26);
+			var env = __webpack_require__(31);
+			var TimeoutError = __webpack_require__(17);
 
 			function setTimeout(f, ms, x, y) {
 				return env.setTimer(function () {
@@ -1817,7 +1873,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -1830,7 +1886,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var state = __webpack_require__(31);
+			var state = __webpack_require__(32);
 			var applier = __webpack_require__(28);
 
 			return function array(Promise) {
@@ -2112,7 +2168,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2274,7 +2330,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2308,7 +2364,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2321,7 +2377,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var inspect = __webpack_require__(31).inspect;
+			var inspect = __webpack_require__(32).inspect;
 
 			return function inspection(Promise) {
 
@@ -2335,7 +2391,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2407,7 +2463,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2438,7 +2494,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2482,7 +2538,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
@@ -2495,7 +2551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var setTimer = __webpack_require__(32).setTimer;
+			var setTimer = __webpack_require__(31).setTimer;
 			var format = __webpack_require__(33);
 
 			return function unhandledRejection(Promise) {
@@ -2579,41 +2635,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(__webpack_require__(29));
 
 /***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
-
-	/** @license MIT License (c) copyright 2010-2014 original author or authors */
-	/** @author Brian Cavalier */
-	/** @author John Hann */
-
-	(function (define) {
-		"use strict";
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-
-			/**
-	   * Custom error type for promises rejected by promise.timeout
-	   * @param {string} message
-	   * @constructor
-	   */
-			function TimeoutError(message) {
-				Error.call(this);
-				this.message = message;
-				this.name = TimeoutError.name;
-				if (typeof Error.captureStackTrace === "function") {
-					Error.captureStackTrace(this, TimeoutError);
-				}
-			}
-
-			TimeoutError.prototype = Object.create(Error.prototype);
-			TimeoutError.prototype.constructor = TimeoutError;
-
-			return TimeoutError;
-		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	})(__webpack_require__(29));
-
-/***/ },
 /* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2629,7 +2650,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			var makePromise = __webpack_require__(34);
 			var Scheduler = __webpack_require__(35);
-			var async = __webpack_require__(32).asap;
+			var async = __webpack_require__(31).asap;
 
 			return makePromise({
 				scheduler: new Scheduler(async)
@@ -2725,46 +2746,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
-
-	/** @license MIT License (c) copyright 2010-2014 original author or authors */
-	/** @author Brian Cavalier */
-	/** @author John Hann */
-
-	(function (define) {
-		"use strict";
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-
-			return {
-				pending: toPendingState,
-				fulfilled: toFulfilledState,
-				rejected: toRejectedState,
-				inspect: inspect
-			};
-
-			function toPendingState() {
-				return { state: "pending" };
-			}
-
-			function toRejectedState(e) {
-				return { state: "rejected", reason: e };
-			}
-
-			function toFulfilledState(x) {
-				return { state: "fulfilled", value: x };
-			}
-
-			function inspect(handler) {
-				var state = handler.state();
-				return state === 0 ? toPendingState() : state > 0 ? toFulfilledState(handler.value) : toRejectedState(handler.value);
-			}
-		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	})(__webpack_require__(29));
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
 	var __WEBPACK_AMD_DEFINE_RESULT__;var require;/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 
 	/** @license MIT License (c) copyright 2010-2014 original author or authors */
@@ -2851,6 +2832,46 @@ return /******/ (function(modules) { // webpackBootstrap
 		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	})(__webpack_require__(29));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)))
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+
+	/** @license MIT License (c) copyright 2010-2014 original author or authors */
+	/** @author Brian Cavalier */
+	/** @author John Hann */
+
+	(function (define) {
+		"use strict";
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+
+			return {
+				pending: toPendingState,
+				fulfilled: toFulfilledState,
+				rejected: toRejectedState,
+				inspect: inspect
+			};
+
+			function toPendingState() {
+				return { state: "pending" };
+			}
+
+			function toRejectedState(e) {
+				return { state: "rejected", reason: e };
+			}
+
+			function toFulfilledState(x) {
+				return { state: "fulfilled", value: x };
+			}
+
+			function inspect(handler) {
+				var state = handler.state();
+				return state === 0 ? toPendingState() : state > 0 ? toFulfilledState(handler.value) : toRejectedState(handler.value);
+			}
+		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	})(__webpack_require__(29));
 
 /***/ },
 /* 33 */

@@ -34,7 +34,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.min",
-                            message: "The length of this value should be greater than or equal to " + limit + "."
+                            message: "This value should have greater than or equal " + limit + " characters."
                         });
                     }
                 });
@@ -54,7 +54,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.max",
-                            message: "The length of this value should be less than or equal to " + limit + "."
+                            message: "This value should have less than or equal " + limit + " characters."
                         });
                     }
                 });
@@ -74,7 +74,29 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.length",
-                            message: "This value should have a length equals to " + limit + "."
+                            message: "This value should have exactly " + limit + " characters."
+                        });
+                    }
+                });
+            });
+        }).bind(this);
+    },
+
+    rangeLength: function rangeLength(limitMin, limitMax) {
+
+        helpers.assert(_.isNumber(limitMin) && limitMin >= 0, "limit min must be a positive integer");
+        helpers.assert(_.isNumber(limitMax) && limitMax >= 0, "limit max must be a positive integer");
+        helpers.assert(limitMin <= limitMax, "limit min must be less than or equals to limit max");
+
+        return (function (value) {
+            return this.is()(value).then(function (valueResolved) {
+                return when.promise(function (resolve, reject) {
+                    if (helpers.isEmpty(valueResolved) || _.isString(valueResolved) && valueResolved.length >= limitMin && valueResolved.length <= limitMax) {
+                        resolve(valueResolved);
+                    } else {
+                        reject({
+                            code: "string.rangeLength",
+                            message: "This value should have between " + limitMin + " and " + limitMax + " characters."
                         });
                     }
                 });
