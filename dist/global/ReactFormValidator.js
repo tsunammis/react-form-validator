@@ -299,7 +299,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                } else {
 	                    reject({
 	                        code: "string.is",
-	                        message: "the value is not a string"
+	                        message: "This value should be a string."
 	                    });
 	                }
 	            });
@@ -318,7 +318,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.min",
-	                            message: "min lenght " + limit
+	                            message: "The length of this value should be greater than or equal to " + limit + "."
 	                        });
 	                    }
 	                });
@@ -338,7 +338,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.max",
-	                            message: "max lenght " + limit
+	                            message: "The length of this value should be less than or equal to " + limit + "."
 	                        });
 	                    }
 	                });
@@ -358,7 +358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.length",
-	                            message: "the lenght have to be " + limit
+	                            message: "This value should have a length equals to " + limit + "."
 	                        });
 	                    }
 	                });
@@ -376,7 +376,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.alphanumeric",
-	                            message: "it is not an alphanumeric value"
+	                            message: "This value is not an alphanumeric."
 	                        });
 	                    }
 	                });
@@ -396,7 +396,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.ip",
-	                            message: "it is not an ip"
+	                            message: "This value is not a valid IP"
 	                        });
 	                    }
 	                });
@@ -414,7 +414,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.url",
-	                            message: "it is not an url"
+	                            message: "This value is not a valid URL."
 	                        });
 	                    }
 	                });
@@ -432,7 +432,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.equals",
-	                            message: "the both values not matches"
+	                            message: "This value should be equal to " + comparison + "."
 	                        });
 	                    }
 	                });
@@ -450,7 +450,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.contains",
-	                            message: "the value does not contain " + seed
+	                            message: "This value should not contains " + seed + "."
 	                        });
 	                    }
 	                });
@@ -470,7 +470,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.in",
-	                            message: "the value is not allowed"
+	                            message: "This value is not allowed."
 	                        });
 	                    }
 	                });
@@ -488,7 +488,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.creditcard",
-	                            message: "it is not a credit card"
+	                            message: "This value is not a valid credit card."
 	                        });
 	                    }
 	                });
@@ -506,7 +506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "string.email",
-	                            message: "it is not an email"
+	                            message: "This value is not a valid email address."
 	                        });
 	                    }
 	                });
@@ -537,7 +537,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                } else {
 	                    reject({
 	                        code: "number.is",
-	                        message: "it is not a number"
+	                        message: "This value should be a number."
 	                    });
 	                }
 	            });
@@ -556,7 +556,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "number.max",
-	                            message: "max " + limit
+	                            message: "This value should be less than or equal to " + limit + "."
 	                        });
 	                    }
 	                });
@@ -576,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "number.min",
-	                            message: "min " + limit
+	                            message: "This value should be greater than or equal to " + limit + "."
 	                        });
 	                    }
 	                });
@@ -596,7 +596,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    } else {
 	                        reject({
 	                            code: "number.equals",
-	                            message: "the value is not equals to " + seed
+	                            message: "This value should be equals to " + seed + "."
 	                        });
 	                    }
 	                });
@@ -619,15 +619,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var AnyValidators = {
 
-	    notEmpty: function notEmpty() {
+	    notBlank: function notBlank() {
 	        return function (value) {
 	            return when.promise(function (resolve, reject) {
 	                if (!helpers.isEmpty(value)) {
 	                    resolve();
 	                } else {
 	                    reject({
-	                        code: "any.notEmpty",
-	                        message: "empty value it is not valid"
+	                        code: "any.notBlank",
+	                        message: "This value should not be blank."
 	                    });
 	                }
 	            });
@@ -1750,7 +1750,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var env = __webpack_require__(31);
+			var env = __webpack_require__(32);
 			var TimeoutError = __webpack_require__(26);
 
 			function setTimeout(f, ms, x, y) {
@@ -1830,7 +1830,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var state = __webpack_require__(32);
+			var state = __webpack_require__(31);
 			var applier = __webpack_require__(28);
 
 			return function array(Promise) {
@@ -2321,7 +2321,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var inspect = __webpack_require__(32).inspect;
+			var inspect = __webpack_require__(31).inspect;
 
 			return function inspection(Promise) {
 
@@ -2495,7 +2495,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		"use strict";
 		!(__WEBPACK_AMD_DEFINE_RESULT__ = function (require) {
 
-			var setTimer = __webpack_require__(31).setTimer;
+			var setTimer = __webpack_require__(32).setTimer;
 			var format = __webpack_require__(33);
 
 			return function unhandledRejection(Promise) {
@@ -2629,7 +2629,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 			var makePromise = __webpack_require__(34);
 			var Scheduler = __webpack_require__(35);
-			var async = __webpack_require__(31).asap;
+			var async = __webpack_require__(32).asap;
 
 			return makePromise({
 				scheduler: new Scheduler(async)
@@ -2725,6 +2725,46 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
+
+	/** @license MIT License (c) copyright 2010-2014 original author or authors */
+	/** @author Brian Cavalier */
+	/** @author John Hann */
+
+	(function (define) {
+		"use strict";
+		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+
+			return {
+				pending: toPendingState,
+				fulfilled: toFulfilledState,
+				rejected: toRejectedState,
+				inspect: inspect
+			};
+
+			function toPendingState() {
+				return { state: "pending" };
+			}
+
+			function toRejectedState(e) {
+				return { state: "rejected", reason: e };
+			}
+
+			function toFulfilledState(x) {
+				return { state: "fulfilled", value: x };
+			}
+
+			function inspect(handler) {
+				var state = handler.state();
+				return state === 0 ? toPendingState() : state > 0 ? toFulfilledState(handler.value) : toRejectedState(handler.value);
+			}
+		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	})(__webpack_require__(29));
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var __WEBPACK_AMD_DEFINE_RESULT__;var require;/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 
 	/** @license MIT License (c) copyright 2010-2014 original author or authors */
@@ -2811,46 +2851,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	})(__webpack_require__(29));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)))
-
-/***/ },
-/* 32 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;"use strict";
-
-	/** @license MIT License (c) copyright 2010-2014 original author or authors */
-	/** @author Brian Cavalier */
-	/** @author John Hann */
-
-	(function (define) {
-		"use strict";
-		!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-
-			return {
-				pending: toPendingState,
-				fulfilled: toFulfilledState,
-				rejected: toRejectedState,
-				inspect: inspect
-			};
-
-			function toPendingState() {
-				return { state: "pending" };
-			}
-
-			function toRejectedState(e) {
-				return { state: "rejected", reason: e };
-			}
-
-			function toFulfilledState(x) {
-				return { state: "fulfilled", value: x };
-			}
-
-			function inspect(handler) {
-				var state = handler.state();
-				return state === 0 ? toPendingState() : state > 0 ? toFulfilledState(handler.value) : toRejectedState(handler.value);
-			}
-		}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	})(__webpack_require__(29));
 
 /***/ },
 /* 33 */

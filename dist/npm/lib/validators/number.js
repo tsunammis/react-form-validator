@@ -14,7 +14,7 @@ var NumberValidators = {
                 } else {
                     reject({
                         code: "number.is",
-                        message: "it is not a number"
+                        message: "This value should be a number."
                     });
                 }
             });
@@ -33,7 +33,7 @@ var NumberValidators = {
                     } else {
                         reject({
                             code: "number.max",
-                            message: "max " + limit
+                            message: "This value should be less than or equal to " + limit + "."
                         });
                     }
                 });
@@ -53,7 +53,7 @@ var NumberValidators = {
                     } else {
                         reject({
                             code: "number.min",
-                            message: "min " + limit
+                            message: "This value should be greater than or equal to " + limit + "."
                         });
                     }
                 });
@@ -73,7 +73,7 @@ var NumberValidators = {
                     } else {
                         reject({
                             code: "number.equals",
-                            message: "the value is not equals to " + seed
+                            message: "This value should be equals to " + seed + "."
                         });
                     }
                 });

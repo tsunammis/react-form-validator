@@ -15,7 +15,7 @@ var StringValidators = {
                 } else {
                     reject({
                         code: "string.is",
-                        message: "the value is not a string"
+                        message: "This value should be a string."
                     });
                 }
             });
@@ -34,7 +34,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.min",
-                            message: "min lenght " + limit
+                            message: "The length of this value should be greater than or equal to " + limit + "."
                         });
                     }
                 });
@@ -54,7 +54,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.max",
-                            message: "max lenght " + limit
+                            message: "The length of this value should be less than or equal to " + limit + "."
                         });
                     }
                 });
@@ -74,7 +74,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.length",
-                            message: "the lenght have to be " + limit
+                            message: "This value should have a length equals to " + limit + "."
                         });
                     }
                 });
@@ -92,7 +92,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.alphanumeric",
-                            message: "it is not an alphanumeric value"
+                            message: "This value is not an alphanumeric."
                         });
                     }
                 });
@@ -112,7 +112,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.ip",
-                            message: "it is not an ip"
+                            message: "This value is not a valid IP"
                         });
                     }
                 });
@@ -130,7 +130,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.url",
-                            message: "it is not an url"
+                            message: "This value is not a valid URL."
                         });
                     }
                 });
@@ -148,7 +148,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.equals",
-                            message: "the both values not matches"
+                            message: "This value should be equal to " + comparison + "."
                         });
                     }
                 });
@@ -166,7 +166,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.contains",
-                            message: "the value does not contain " + seed
+                            message: "This value should not contains " + seed + "."
                         });
                     }
                 });
@@ -186,7 +186,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.in",
-                            message: "the value is not allowed"
+                            message: "This value is not allowed."
                         });
                     }
                 });
@@ -204,7 +204,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.creditcard",
-                            message: "it is not a credit card"
+                            message: "This value is not a valid credit card."
                         });
                     }
                 });
@@ -222,7 +222,7 @@ var StringValidators = {
                     } else {
                         reject({
                             code: "string.email",
-                            message: "it is not an email"
+                            message: "This value is not a valid email address."
                         });
                     }
                 });
