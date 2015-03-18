@@ -1,10 +1,13 @@
 "use strict";
 
 var sequence = require("when/sequence");
+var when = require("when");
 var _ = require("lodash");
 var objectAssign = require("object-assign");
 
 var FieldValidation = {
+
+    hasFieldValidation: true,
 
     getInitialValidationState: function getInitialValidationState() {
         return {
@@ -28,7 +31,7 @@ var FieldValidation = {
         };
     },
 
-    getValidors: function getValidors() {
+    getValidators: function getValidators() {
         var validators = [];
 
         if (_.isFunction(this.props.validators)) {
@@ -87,15 +90,22 @@ var FieldValidation = {
 
     validate: function validate() {
         var value = this.refs.field.getDOMNode().value;
-        var validators = this.getValidors();
+        var validators = this.getValidators();
+
+        var validPromise = (function () {
+            this.updateValidationState().valid();
+        }).bind(this);
+
+        var invalidPromise = (function (err) {
+            this.updateValidationState().invalid(err);
+            return when.reject(err);
+        }).bind(this);
 
         // Mark the validation as "pending"
         this.updateValidationState().pending();
-        sequence(validators, value).then((function () {
-            this.updateValidationState().valid();
-        }).bind(this), (function (err) {
-            this.updateValidationState().invalid(err);
-        }).bind(this));
+        return sequence(validators, value).then(validPromise, invalidPromise).then(function () {
+            return when.resolve(value);
+        });
     },
 
     mapActionsEventsListener: function mapActionsEventsListener() {

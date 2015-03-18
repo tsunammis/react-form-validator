@@ -1,5 +1,6 @@
 "use strict";
 
 module.exports = {
-    FieldValidation: require("./FieldValidation")
+    FieldValidation: require("./FieldValidation"),
+    FormValidation: require("./FormValidation")
 };

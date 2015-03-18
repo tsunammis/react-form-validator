@@ -6,14 +6,14 @@ var objectAssign    = require('object-assign');
 var FieldValidation = require('../mixins/FieldValidation');
 
 /**
- * React class to handle the rendering of the InputField
+ * React class to handle the rendering of the PasswordField
  *
- * @class InputField
+ * @class PasswordField
  * @constructor
  */
-var InputField = React.createClass({
+var PasswordField = React.createClass({
 
-    displayName: 'InputField',
+    displayName: 'PasswordField',
     mixins: [FieldValidation],
 
     propTypes: {
@@ -42,12 +42,12 @@ var InputField = React.createClass({
         }
 
         return (
-            <div className="InputField">
-                <input type="text" ref="field" className={classes} {...this.props} {...this.mapActionsEventsListener()} />
+            <div className="PasswordField">
+                <input type="password" ref="field" className={classes} {...this.props} {...this.mapActionsEventsListener()} />
                 {err}
             </div>
         );
     }
 });
 
-module.exports = InputField;
+module.exports = PasswordField;
