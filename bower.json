@@ -1,6 +1,6 @@
 {
   "name": "react-form-validator",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Simple way to validate your React forms",
   "main": "dist/global/ReactFormValidator.js",
   "homepage": "https://github.com/tsunammis/react-form-validator",
