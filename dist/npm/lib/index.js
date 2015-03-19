@@ -3,5 +3,6 @@
 module.exports = {
     components: require("./components"),
     mixins: require("./mixins"),
-    validators: require("./validators")
+    validators: require("./validators"),
+    helpers: require("./helpers")
 };

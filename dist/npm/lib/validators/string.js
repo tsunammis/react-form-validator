@@ -3,7 +3,7 @@
 var when = require("when");
 var _ = require("lodash");
 var validator = require("validator");
-var helpers = require("./helpers");
+var helpers = require("../helpers");
 
 var StringValidators = {
 
